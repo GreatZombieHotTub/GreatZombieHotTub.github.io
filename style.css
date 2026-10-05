@@ -1,0 +1,231 @@
+:root {
+  --night: #17100e;
+  --panel: #241816;
+  --wine: #5b1a2c;
+  --amber: #f2b950;
+  --lime: #c8f03a;
+  --olive: #8d8a35;
+  --cream: #efe4cf;
+  --muted: #c2b49b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  font-family: "Fraunces", Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--cream);
+  background:
+    radial-gradient(ellipse at 15% 0%, rgba(91, 26, 44, 0.55), transparent 55%),
+    radial-gradient(ellipse at 90% 40%, rgba(141, 138, 53, 0.18), transparent 50%),
+    var(--night);
+  background-attachment: fixed;
+}
+
+a { color: var(--amber); }
+a:focus-visible, .btn:focus-visible, .to-top:focus-visible {
+  outline: 3px solid var(--lime);
+  outline-offset: 3px;
+}
+
+/* ---------- Sticky header with fairy lights ---------- */
+.site-header {
+  position: sticky;            /* sticks to top on scroll */
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 6%;
+  background: var(--night);
+  border-bottom: 3px dotted var(--amber);
+}
+.site-header::after {          /* string of lights hanging below the bar */
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 100%;
+  height: 24px;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12px 8px, var(--amber) 0 3px, rgba(242, 185, 80, 0.35) 4px, transparent 9px),
+    radial-gradient(circle at 34px 14px, var(--cream) 0 3px, rgba(239, 228, 207, 0.3) 4px, transparent 9px);
+  background-size: 44px 24px;
+  background-repeat: repeat-x;
+}
+.brand { color: var(--cream); font-weight: 800; font-size: 1.2rem; text-decoration: none; }
+nav ul { display: flex; flex-wrap: wrap; gap: 4px; list-style: none; }
+nav a {
+  display: block;
+  padding: 6px 12px;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+nav a:hover, nav a:focus-visible { color: var(--amber); border-bottom-color: var(--amber); }
+
+main { max-width: 920px; margin: 0 auto; padding: 56px 20px 24px; }
+
+/* ---------- Hero ---------- */
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  margin-bottom: 56px;
+}
+
+/* Polaroid photo; sticker is absolute inside the relative figure */
+.polaroid {
+  position: relative;
+  flex-shrink: 0;
+  width: 250px;
+  padding: 14px 14px 12px;
+  background: var(--cream);
+  color: #2b1d1a;
+  border: 3px ridge var(--amber);
+  transform: rotate(-3deg);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+.polaroid::before {            /* strip of tape */
+  content: "";
+  position: absolute;
+  top: -16px; left: 50%;
+  width: 90px; height: 28px;
+  margin-left: -45px;
+  background: rgba(200, 240, 58, 0.55);
+  transform: rotate(4deg);
+}
+.photo { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border: 2px inset #8a7a66; }
+.polaroid figcaption {
+  margin-top: 10px;
+  text-align: center;
+  font-family: "Special Elite", "Courier New", monospace;
+  font-size: 1rem;
+}
+.sticker {
+  position: absolute;
+  bottom: -14px; right: -22px;
+  padding: 4px 14px;
+  background: var(--lime);
+  color: #1b1b0a;
+  font-weight: 800;
+  font-size: 0.85rem;
+  border: 2px solid var(--night);
+  border-radius: 20px;
+  transform: rotate(6deg);
+}
+
+/* Ransom-note name: the one loud element on the page */
+.hero-text h1 { font-weight: 400; line-height: 1; margin-bottom: 18px; }
+.word { display: block; margin-bottom: 6px; }
+.word span {
+  display: inline-block;
+  margin: 2px 1px;
+  padding: 2px 9px 4px;
+  font-size: 2.6rem;
+  background: var(--cream);
+  color: #1b1210;
+  font-family: "Special Elite", "Courier New", monospace;
+  box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.5);
+}
+.word span:nth-child(5n+1) { background: var(--lime); transform: rotate(-3deg); }
+.word span:nth-child(5n+2) { background: var(--wine); color: var(--cream); font-family: "Fraunces", Georgia, serif; font-weight: 800; transform: rotate(2deg); }
+.word span:nth-child(5n+3) { background: var(--amber); font-family: "Fraunces", Georgia, serif; font-style: italic; transform: rotate(-1deg); }
+.word span:nth-child(5n+4) { background: var(--olive); color: #17100e; transform: rotate(3deg); }
+.word span:nth-child(5n)   { background: var(--cream); font-family: "Fraunces", Georgia, serif; font-weight: 800; transform: rotate(-2deg); }
+
+.tagline { margin-bottom: 10px; font-weight: 600; font-style: italic; color: var(--amber); }
+.btn {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 10px 24px;
+  background: var(--amber);
+  color: #1b1210;
+  font-weight: 800;
+  text-decoration: none;
+  border: 3px outset var(--amber);
+}
+.btn:hover { background: var(--lime); border-color: var(--lime); }
+
+/* ---------- Section cards (box model) ---------- */
+.card {
+  margin-bottom: 36px;
+  padding: 28px 32px;
+  background: var(--panel);
+  border: 2px dashed rgba(242, 185, 80, 0.6);
+  border-radius: 4px;
+}
+.card h2 {
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--amber);
+  border-bottom: 4px double var(--wine);
+}
+.card p + p { margin-top: 10px; }
+.contact { border: 5px double var(--amber); }
+
+.entry { padding: 6px 0 6px 16px; border-left: 4px solid var(--wine); }
+.entry + .entry { margin-top: 14px; }
+.entry h3 { font-size: 1.15rem; }
+.meta { color: var(--muted); font-style: italic; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; }
+.chips li {
+  padding: 5px 16px;
+  font-weight: 600;
+  background: rgba(91, 26, 44, 0.55);
+  border: 2px dotted var(--lime);
+  border-radius: 24px;
+}
+.chips li:nth-child(even) { transform: rotate(-1.5deg); }
+.chips li:nth-child(odd) { transform: rotate(1deg); }
+
+.plain { list-style: none; }
+.plain li { margin-bottom: 8px; padding-left: 16px; border-left: 3px solid var(--olive); }
+
+/* ---------- Fixed back-to-top (position: fixed) ---------- */
+.to-top {
+  position: fixed;
+  right: 18px; bottom: 18px;
+  padding: 8px 14px;
+  background: var(--wine);
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border: 2px solid var(--amber);
+}
+.to-top:hover { background: var(--amber); color: #1b1210; }
+
+footer { padding: 28px 20px 70px; text-align: center; color: var(--muted); border-top: 3px dotted var(--wine); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  .hero { flex-direction: column; text-align: center; gap: 40px; }
+  .word span { font-size: 2.1rem; padding: 2px 7px 3px; }
+  .card { padding: 22px 18px; }
+  .site-header { justify-content: center; }
+  .chips { justify-content: center; }
+}
+
+/* Small-screen safeguards and keyboard navigation. */
+.hero-text { min-width: 0; }
+.contact a { overflow-wrap: anywhere; }
+.skip-link { position: absolute; top: -100px; left: 16px; z-index: 20; background: var(--cream); color: var(--night); padding: 10px; }
+.skip-link:focus { top: 10px; }
+@media (max-width: 1000px) { html { scroll-padding-top: 155px; } }
+@media (max-width: 400px) {
+  html { scroll-padding-top: 195px; }
+  .site-header { padding: 10px 12px; }
+  nav a { padding: 4px 8px; font-size: .9rem; }
+  nav ul { justify-content: center; }
+  .word { white-space: nowrap; }
+  .word span { font-size: 1.65rem; padding: 2px 5px 3px; }
+  .polaroid { width: 225px; }
+  .sticker { right: -12px; }
+}
